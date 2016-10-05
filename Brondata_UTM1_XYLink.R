@@ -3,6 +3,7 @@
 setwd(dir = "C://Users/sander_devisscher/Google Drive/EU_IAS/T0/Verspreidingskaartjes data")
 
 library(dplyr)
+library(foreign)
 
 Brondata <- read.csv("C:/Users/sander_devisscher/Google Drive/EU_IAS/T0/invasive-t0-occurrences/data/processed/invasive_EU_listed_and_considered_with_joins.tsv", header=TRUE)
 UTM1 <- read.csv2("C:/Users/sander_devisscher/Google Drive/EU_IAS/T0/Verspreidingskaartjes data/UTM1.csv")
@@ -43,6 +44,7 @@ for(a in UTM1_Hokken){
   }
 }
 
+write.dbf(temp7, "EuConc_UTM1_xyLink.dbf")
 write.csv2(temp7, "EuConc_UTM1_xyLink.csv")
 
 
