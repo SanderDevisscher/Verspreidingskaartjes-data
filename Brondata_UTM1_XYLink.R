@@ -34,7 +34,7 @@ for(a in UTM1_Hokken){
     TAG <- a
     soort <- b
     temp5 <- data.frame(TAG, soort, aantalwnm)
-    temp6 <- merge(x = temp5, y = UTM1, all.x = TRUE)
+    temp6 <- merge(x = temp5, y = UTM1)
     temp7 <- rbind(temp7, temp6)
       
     
