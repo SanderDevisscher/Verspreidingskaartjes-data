@@ -29,18 +29,15 @@ for(a in UTM1_Hokken){
   soorten <- unique(temp2$gbifapi_acceptedScientificName)
   for(b in soorten){
     temp3 <- subset(temp2, gbifapi_acceptedScientificName == b)
-    jaren <- unique(temp3$year)
-    for(c in jaren){
-      temp4 <- subset(temp3, year == c)
-      aantalwnm <- nrow(temp4)
-      TAG <- a
-      soort <- b
-      jaar <- c
-      temp5 <- data.frame(TAG, soort, jaar, aantalwnm)
-      temp6 <- merge(x = temp5, y = UTM1, all.x = TRUE)
-      temp7 <- rbind(temp7, temp6)
+    temp4 <- temp3
+    aantalwnm <- nrow(temp4)
+    TAG <- a
+    soort <- b
+    temp5 <- data.frame(TAG, soort, aantalwnm)
+    temp6 <- merge(x = temp5, y = UTM1, all.x = TRUE)
+    temp7 <- rbind(temp7, temp6)
       
-    }
+    
   }
 }
 
