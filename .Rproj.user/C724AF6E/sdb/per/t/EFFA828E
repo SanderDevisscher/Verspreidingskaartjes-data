@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "\n####Basics#### Workingdirectory instellen, Data inlezen & Libraries laden\nsetwd(dir = \"C://Users/sander_devisscher/Google Drive/EU_IAS/T0\")\n\nlibrary(dplyr)\n\nBrondata <- read.csv(\"C:/Users/sander_devisscher/Google Drive/EU_IAS/T0/invasive-t0-occurrences/data/processed/invasive_EU_listed_and_considered_with_joins.tsv\", header=TRUE)\nUTM1 <- read.csv2(\"C:/Users/sander_devisscher/Google Drive/EU_IAS/T0/Verspreidingskaartjes data/UTM1.csv\")\n\n####Opsplitsen#### Volgens eulist status\nEuConc <- subset(Brondata, euConcernStatus == \"listed\")\nEuPrep <- subset(Brondata, euConcernStatus == \"under preparation\")\nEuCons <- subset(Brondata, euConcernStatus == \"under consideration\")\n\n####Vereenvoudiging EUConcern####\n\nUTM1_Hokken <- unique(EuConc$gis_utm1_code) \ntemp5 <- data.frame()\n\nfor(a in UTM1_Hokken){\n  temp <- subset(EuConc, gis_utm1_code == a )\n  Soorten <- unique(EuConc$gbifapi_acceptedScientificName)\n  for(b in Soorten){\n    temp2 <- subset(temp, gbifapi_acceptedScientificName == b)\n    jaren <- unique(temp2$year)\n    for(c in jaren){\n      temp3 <- subset(temp2, year == c)\n      AWNM <- as.numeric(nrow(temp3))\n      temp4 <- data.frame(a, b, c, AWNM)\n      temp6 <- subset(UTM1, TAG == a)\n      for (!is.na(temp6$POINT_X)){next}\n      temp4$x <- temp6$POINT_X\n      temp4$y <- temp6$POINT_Y\n      temp5 <- rbind(temp5,temp4)\n    }\n  }\n}\n \n\nwrite.csv(temp5, \"EuConc_UTM1_xyLink.csv\", sep = \",\")\n\n\n\n\n",
+    "created" : 1475588956718.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2908472170",
+    "id" : "EFFA828E",
+    "lastKnownWriteTime" : 1475596987,
+    "last_content_update" : -2147483648,
+    "path" : "C:/Users/sander_devisscher/Google Drive/EU_IAS/T0/Verspreidingskaartjes data/Brondata_UTM1_XYLink.R",
+    "project_path" : "Brondata_UTM1_XYLink.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
