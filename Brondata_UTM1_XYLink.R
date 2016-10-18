@@ -44,5 +44,28 @@ for(a in UTM1_Hokken){
 write.dbf(temp7, "EuConc_UTM1_xyLink.dbf")
 write.csv2(temp7, "EuConc_UTM1_xyLink.csv")
 
+#Opkuis
+remove(temp)
+remove(temp2)
+remove(temp3)
+remove(temp4)
+remove(temp5)
+remove(temp6)
+remove(a)
+remove(b)
+remove(c)
+remove(d)
+remove(jaar)
+remove(jaren)
+remove(soorten)
+remove(TAG)
+remove(UTM1_TAG)
+
+####Species checkup####
+#Sometimes there are errors in the dataset
+#to enable to check the data from a single species 
+
+soorten <- Brondata
+
 
 
